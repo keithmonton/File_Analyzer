@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File Analysis</title>
+  </head>
+  <body>
+    <h1>File Analysis</h1>
+    <form action="/analyze" method="post">
+      <label for="file_path">Enter the file path:</label>
+      <input type="text" id="file_path" name="file_path">
+      <input type="submit" value="Analyze">
+    </form>
+  </body>
+</html>
+(base) kmonto@desktop-linux:~/PycharmProjects/File_Handler/templates$ more results.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File Analysis Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>File Analysis Results</h1>
+      <p>File size: {{ file_size }} GB</p>
+      <p>Number of columns: {{ num_columns }}</p>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Column lengths:</h2>
+          <ul>
+            {% for length in column_lengths %}
+              <li>Column {{ loop.index }}: {{ length }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Column data types:</h2>
+          <ul>
+            {% for type in column_types %}
+              <li>Column {{ loop.index }}: {{ type }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Column categories:</h2>
+          <ul>
+            {% for category in column_categories %}
+              <li>Column {{ loop.index }}: {{ category }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <p>Number of rows: {{ num_rows }}</p>
+    </div>
+  </body>
+</html>

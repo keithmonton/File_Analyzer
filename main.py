@@ -33,6 +33,10 @@ class FileProcessor:
         self.column_categories = []  # Initialize column_categories if not already done
 
     def process_file(self):
+        """
+        A function that processes a file, extracting various information like file size, number of columns,
+        column lengths, number of rows, column descriptions, column types, and column categories.
+        """
         # Read the file into a pandas dataframe
         df = pd.read_csv(self.file_path)
 
@@ -64,6 +68,10 @@ class FileProcessor:
             else:
                 self.column_categories.append("alphanumeric")
     def print_results(self):
+        """
+        Print the processing results including file size, number of rows, number of columns,
+        column max width, column descriptions, column data types, and column categories.
+        """
         print(f"File size: {self.file_size:.2f} GB")
         print(f"\nNumber of rows: {self.num_rows}")
         print(f"\nNumber of columns: {self.num_columns}")
@@ -79,10 +87,26 @@ class FileProcessor:
             print(f"Column {i}: {category}")
 @app.route('/')
 def index():
+    """
+    Route decorator for the index page that renders the 'index.html' template.
+    """
     return render_template('index.html')
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
+    """
+    Route decorator for the '/analyze' endpoint that handles POST requests.
+    This function processes a file specified in the request form and renders the 'results.html' template
+    with the file processing results.
+
+    Parameters:
+        None
+
+    Returns:
+        - If the 'file_path' is present in the request form, it processes the file using the FileProcessor
+          class and renders the 'results.html' template with the file processing results.
+        - If the 'file_path' is not present in the request form, it returns the string "File path not provided".
+    """
     if 'file_path' in request.form:
         file_path = request.form['file_path']
         processor = FileProcessor(file_path)

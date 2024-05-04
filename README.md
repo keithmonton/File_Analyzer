@@ -17,6 +17,7 @@ Running the Application
 
 Run the application: python app.py
 Open a web browser and navigate to http://localhost:5000
+
 Usage
 
 Enter the path to the CSV file you want to analyze in the input field
